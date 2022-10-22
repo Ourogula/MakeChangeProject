@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CashRegister {
 	public static void main(String[] args) {
-		//Initialize the loop variable
+		// Initialize the loop variable
 		boolean goAgain = true;
 
 		Scanner sc = new Scanner(System.in);
@@ -26,13 +26,13 @@ public class CashRegister {
 			} else {
 				printChange(itemPriceTemp, amountPaidTemp);
 			}
-				// Does the user want to use the program again?
-				System.out.println();
-				System.out.println("Do you want to go again? [y/n]");
-				String answer = sc.nextLine();
-				if (answer.equalsIgnoreCase("n")) {
-					System.out.println("Thanks for using the Cash Register Change Calculator!");
-					goAgain = false;
+			// Does the user want to use the program again?
+			System.out.println();
+			System.out.println("Do you want to go again? [y/n]");
+			String answer = sc.nextLine();
+			if (answer.equalsIgnoreCase("n")) {
+				System.out.println("Thanks for using the Cash Register Change Calculator!");
+				goAgain = false;
 			}
 		}
 		sc.close();
@@ -61,8 +61,16 @@ public class CashRegister {
 		int dimes = 0;
 		int nickels = 0;
 		int pennies = 0;
+		
 		int itemPrice = (int) (itemPriceTemp * 100);
+		if ((double) itemPrice / 100 < itemPriceTemp) {
+			itemPrice++;
+		}
+		
 		int amountPaid = (int) (amountPaidTemp * 100);
+		if ((double) amountPaid / 100 < amountPaidTemp) {
+			amountPaid++;
+		}
 
 		// Find out how much change there is
 		amountPaid -= itemPrice;
@@ -151,10 +159,10 @@ public class CashRegister {
 		} else if (ones > 1 && multiple == true) {
 			change += ", " + ones + " one dollar bills";
 		} else if (ones == 1) {
-			change += tens + " one dollar bill";
+			change += ones + " one dollar bill";
 			multiple = true;
 		} else if (ones > 1) {
-			change += tens + " one dollar bills";
+			change += ones + " one dollar bills";
 			multiple = true;
 		}
 
